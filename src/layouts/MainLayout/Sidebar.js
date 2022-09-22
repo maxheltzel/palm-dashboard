@@ -17,7 +17,7 @@ const ROUTES = [
 ];
 
 export default function Sidebar() {
-  const { path } = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <div className="fixed top-30 left-0 flex flex-col items-center pl-6 pr-8">
@@ -43,7 +43,7 @@ export default function Sidebar() {
           <Link
             key={index}
             className={
-              routeItem.to === path ? `
+              routeItem.to === pathname ? `
                 mt-3
                 rounded-full
                 bg-[#2EB9FF]
