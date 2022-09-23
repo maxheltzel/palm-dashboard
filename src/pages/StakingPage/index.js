@@ -1,5 +1,7 @@
+import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { ACTIVE, ENDED } from "../../utils/constants";
+import PoolCard from "./PoolCard";
 
 const classNameOfActiveTabButton = "bg-[#D7D7D7] text-[#1E1E1E] hover:bg-[#969494]";
 const classNameOfInActiveTabButton = "bg-[#1e1e1e] text-[#d7d7d7] hover:bg-[#2e2d2d]";
@@ -57,6 +59,27 @@ export default function StakingPage() {
           </div>
         </div>
       </div>
+
+      <div className="mt-16 grid grid-cols-3 gap-12">
+        <div className="col-span-1">
+          <PoolCard 
+            pairTokenImage="/assets/images/usdc.png" 
+            pairTokenName="USDC"
+          />
+        </div>
+        <div className="col-span-1">
+          <PoolCard 
+            pairTokenImage="/assets/images/busd.png" 
+            pairTokenName="BUSD"
+          />
+        </div>
+        <div className="col-span-1">
+          <PoolCard 
+            pairTokenImage="/assets/images/ethereum.png" 
+            pairTokenName="ETH"
+          />
+        </div>
+      </div>
     </div>
   );
-}
+};
