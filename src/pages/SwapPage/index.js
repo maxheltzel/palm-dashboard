@@ -73,12 +73,13 @@ export default function SwapPage() {
               "
               >
                 <div className="flex items-center">
-                  <img
+                  {/* <img
                     src="/assets/images/from-crypto.png"
                     alt="BUSD"
                     width="25"
-                  />
-                  <span className="text-lg text-white font-bold ml-2">BUSD</span>
+                  /> */}
+                  <Icon icon="cib:ethereum" className="text-gray-500 text-2xl" />
+                  <span className="text-lg text-white font-bold ml-2">ETH</span>
                 </div>
               </div>
 
