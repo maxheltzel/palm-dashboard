@@ -22,9 +22,9 @@ export default function Sidebar() {
   return (
     <div className="fixed top-30 left-0 flex flex-col items-center pl-6 pr-8">
       {/* Home button */}
-      <button className="mt-12 text-[#9596A3] text-2xl" to="/">
+      <Link className="mt-12 text-[#9596A3] text-2xl hover:text-white transition-all" to="/">
         <Icon icon="ant-design:home-outlined" />
-      </button>
+      </Link>
 
       {/* Other navigate links */}
       <div
