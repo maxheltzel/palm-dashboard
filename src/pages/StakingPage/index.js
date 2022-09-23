@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { ACTIVE, ENDED } from "../../utils/constants";
 import PoolCard from "./PoolCard";
