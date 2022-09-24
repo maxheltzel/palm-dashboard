@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useMemo, useState } from "react";
+import SwapInput from "../../components/SwapInput";
 import { REGEX_NUMBER_VALID, SWAP_RATIO } from "../../utils/constants";
 
 export default function SwapPage() {
@@ -8,23 +9,23 @@ export default function SwapPage() {
 
   const classNameOfSwapButton = useMemo(() => {
     if (swappingToken > 0) {
-      return 'w-full mt-5 bg-[#006DEE] rounded-2xl text-white text-xl font-bold py-3 transition-all hover:bg-[#004DDD]'
+      return 'w-full mt-5 bg-[#006DEE] rounded-2xl text-white text-xl font-bold py-3 transition-all hover:bg-[#004DDD]';
     } else {
       return 'w-full mt-5 bg-[#1e1e1e] rounded-2xl text-[#aaaaaa] text-xl font-bold py-3';
     }
   }, [swappingToken]);
 
-  const handleSwappingToken = (value) => {
-    if (value.match(REGEX_NUMBER_VALID)) {
-      setSwappingToken(Number(value));
-      setSwappedToken(Number(value) * SWAP_RATIO);
+  const handleSwappingToken = (e) => {
+    if (e.target.value.match(REGEX_NUMBER_VALID)) {
+      setSwappingToken(Number(e.target.value));
+      setSwappedToken(Number(e.target.value) * SWAP_RATIO);
     }
   };
 
-  const handleSwappedToken = (value) => {
-    if (value.match(REGEX_NUMBER_VALID)) {
-      setSwappedToken(Number(value));
-      setSwappingToken(Number(value) / SWAP_RATIO);
+  const handleSwappedToken = (e) => {
+    if (e.target.value.match(REGEX_NUMBER_VALID)) {
+      setSwappedToken(Number(e.target.value));
+      setSwappingToken(Number(e.target.value) / SWAP_RATIO);
     }
   };
 
@@ -50,7 +51,7 @@ export default function SwapPage() {
           </button>
         </div>
 
-        {/* Input busd */}
+        {/* Input Swapping token */}
         <div className="mt-5">
           {/* label */}
           <div className="flex items-center justify-between">
@@ -59,53 +60,32 @@ export default function SwapPage() {
           </div>
 
           {/* input */}
-          <div className="w-full mt-3">
-            <div className="relative">
+          {<SwapInput
+            startAdornment={() => (
               <div
                 className="
-                absolute
-                inset-y-0
-                left-0
-                pl-3
-                flex
-                items-center
-                pointer-events-none
-              "
+                  absolute
+                  inset-y-0
+                  left-0
+                  pl-3
+                  flex
+                  items-center
+                  pointer-events-none
+                "
               >
                 <div className="flex items-center">
-                  {/* <img
-                    src="/assets/images/from-crypto.png"
+                  <img
+                    src="/assets/images/ethereum.png"
                     alt="BUSD"
                     width="25"
-                  /> */}
-                  <Icon icon="cib:ethereum" className="text-gray-500 text-2xl" />
+                  />
                   <span className="text-lg text-white font-bold ml-2">ETH</span>
                 </div>
               </div>
-
-              <input
-                id="search"
-                name="search"
-                className="
-                  w-full
-                  pl-28
-                  pr-6
-                  py-3
-                  border border-[#575757]
-                  bg-[#121212]
-                  text-2xl text-gray-300
-                  font-bold
-                  placeholder-gray-400
-                  focus:outline-none focus:text-gray-200
-                  rounded-2xl
-                  direction-rtl
-                "
-                placeholder="0"
-                value={swappingToken}
-                onChange={e => handleSwappingToken(e.target.value)}
-              />
-            </div>
-          </div>
+            )}
+            value={swappingToken}
+            onChange={handleSwappingToken}
+          />}
         </div>
 
         {/* Swap icon */}
@@ -113,7 +93,7 @@ export default function SwapPage() {
           <Icon icon="bi:arrow-down-circle" className="text-2xl text-white" />
         </div>
 
-        {/* Input token */}
+        {/* Input swapped token */}
         <div className="mt-5">
           {/* label */}
           <div className="flex items-center justify-between">
@@ -122,8 +102,8 @@ export default function SwapPage() {
           </div>
 
           {/* input */}
-          <div className="w-full mt-3">
-            <div className="relative">
+          <SwapInput
+            startAdornment={() => (
               <div
                 className="
                   absolute
@@ -140,30 +120,10 @@ export default function SwapPage() {
                   <span className="text-lg text-white font-bold ml-2">Palm</span>
                 </div>
               </div>
-
-              <input
-                id="search"
-                name="search"
-                className="
-                  w-full
-                  pl-28
-                  pr-6
-                  py-3
-                  border border-[#575757]
-                  bg-[#121212]
-                  text-2xl text-gray-300
-                  font-bold
-                  placeholder-gray-400
-                  focus:outline-none focus:text-gray-200
-                  rounded-2xl
-                  direction-rtl
-                "
-                placeholder="0"
-                value={swappedToken}
-                onChange={e => handleSwappedToken(e.target.value)}
-              />
-            </div>
-          </div>
+            )}
+            value={swappedToken}
+            onChange={handleSwappedToken}
+          />
         </div>
 
         <div className="flex items-center justify-center mt-5">
