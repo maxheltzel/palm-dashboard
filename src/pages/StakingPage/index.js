@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ACTIVE, ENDED } from "../../utils/constants";
 import PoolCard from "./PoolCard";
+import StakeModal from "./StakeModal";
 
 const classNameOfActiveTabButton = "bg-[#D7D7D7] text-[#1E1E1E] hover:bg-[#969494]";
 const classNameOfInActiveTabButton = "bg-[#1e1e1e] text-[#d7d7d7] hover:bg-[#2e2d2d]";
@@ -51,34 +52,36 @@ export default function StakingPage() {
         </div>
 
         {/* Switch */}
-        <div class="flex items-center">
+        <div className="flex items-center">
           <span className="text-md text-[#909090]">My Liquidity Only</span>
-          <div class="form-switch ml-4">
-            <input class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-[#444444] bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+          <div className="form-switch ml-4">
+            <input className="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-[#444444] bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
           </div>
         </div>
       </div>
 
+      {/* Pools */}
       <div className="mt-16 grid grid-cols-3 gap-12">
         <div className="col-span-1">
-          <PoolCard 
-            pairTokenImage="/assets/images/usdc.png" 
+          <PoolCard
+            pairTokenImage="/assets/images/usdc.png"
             pairTokenName="USDC"
           />
         </div>
         <div className="col-span-1">
-          <PoolCard 
-            pairTokenImage="/assets/images/busd.png" 
+          <PoolCard
+            pairTokenImage="/assets/images/busd.png"
             pairTokenName="BUSD"
           />
         </div>
         <div className="col-span-1">
-          <PoolCard 
-            pairTokenImage="/assets/images/ethereum.png" 
+          <PoolCard
+            pairTokenImage="/assets/images/ethereum.png"
             pairTokenName="ETH"
           />
         </div>
       </div>
+      <StakeModal id="stakeModal" />
     </div>
   );
 };

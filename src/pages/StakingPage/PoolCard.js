@@ -80,6 +80,8 @@ export default function PoolCard({ pairTokenImage, pairTokenName }) {
         <div className="col-span-1">
           <button
             className="rounded-xl w-full py-3 text-sm text-white font-semibold bg-[#006DEE] hover:bg-[#004DDD] transition-all"
+            data-bs-toggle="modal" 
+            data-bs-target="#stakeModal"
           >Stake{pairTokenName}</button>
         </div>
         <div className="col-span-1">

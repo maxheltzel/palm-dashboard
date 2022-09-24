@@ -5,3 +5,5 @@ export const REGEX_NUMBER_VALID = /^[0-9]*\.?[0-9]*$/;
 export const SWAP_RATIO = 2.4;
 export const ACTIVE = 'active';
 export const ENDED = 'ended';
+export const STAKE = 'stake';
+export const UNSTAKE = 'unstake';
