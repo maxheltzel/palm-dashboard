@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { STAKE, UNSTAKE } from "../../../utils/constants";
+import StakeTab from "./StakeTab";
 import UnstakeTab from "./UnstakeTab";
 
 const classNameOfActiveTabButton = "bg-[#D7D7D7] text-[#1E1E1E] hover:bg-[#969494]";
@@ -15,16 +16,16 @@ export default function StakeModal({ id }) {
 
   return (
     <div
-      class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+      className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
       id={id}
       tabIndex="-1"
       aria-modal="true"
       role="dialog"
     >
-      <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
-        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-[#121212] bg-clip-padding rounded-xl outline-none text-current">
+      <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
+        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-[#121212] bg-clip-padding rounded-xl outline-none text-current">
           {/* Header */}
-          <div class="relative modal-header flex flex-shrink-0 items-center justify-center px-4 py-10 rounded-t-md">
+          <div className="relative modal-header flex flex-shrink-0 items-center justify-center px-4 py-10 rounded-t-md">
             <div className="inline-flex" role="group">
               <button
                 className={`${currentTab === STAKE ? classNameOfActiveTabButton : classNameOfInActiveTabButton} text-md font-bold py-1 w-32 rounded-l-lg transition-all`}
@@ -46,7 +47,7 @@ export default function StakeModal({ id }) {
           </div>
 
           {/* Body */}
-          <UnstakeTab />
+          {currentTab === STAKE ? <StakeTab /> : <UnstakeTab />}
         </div>
       </div>
     </div>

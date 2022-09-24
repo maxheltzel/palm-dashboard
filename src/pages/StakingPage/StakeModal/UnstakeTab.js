@@ -20,6 +20,7 @@ export default function UnstakeTab({ availableAmount = 55.01912 }) {
       setUnstakeAmount(availableAmount * Number(value) / 100);
     }
   };
+  
   return (
     <>
       <div className="modal-body relative px-8">
