@@ -1,4 +1,25 @@
-export default function UnstakeTab() {
+import { useState } from "react";
+import SwapInput from "../../../components/SwapInput";
+import { REGEX_NUMBER_VALID } from "../../../utils/constants";
+
+const UNSTAKE_PERCENTAGES = [25, 50, 75, 100];
+
+export default function UnstakeTab({ availableAmount = 55.01912 }) {
+  const [unstakeAmount, setUnstakeAmount] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+
+  const handleUnstakeAmount = (e) => {
+    if (e.target.value.match(REGEX_NUMBER_VALID)) {
+      setUnstakeAmount(Number(e.target.value));
+    }
+  };
+
+  const handlePercentage = (value) => {
+    if (Number(value) !== percentage) {
+      setPercentage(Number(value));
+      setUnstakeAmount(availableAmount * Number(value) / 100);
+    }
+  };
   return (
     <>
       <div className="modal-body relative px-8">
@@ -36,23 +57,63 @@ export default function UnstakeTab() {
           </tbody>
         </table>
 
-        <button 
+        {/* Claim button */}
+        <button
           className="rounded-xl border-2 border-[#006DEE] text-md text-[#006DEE] font-semibold w-full py-3 hover:bg-[#006DEE] hover:text-white transition-all"
           data-modal-toggle="stake-modal"
         >
           Claim Rewards
         </button>
+
+        {/* Form */}
+        <div className="mt-14">
+          {/* label */}
+          <div className="flex items-center justify-between">
+            <span className="text-md text-white">Unstake</span>
+            <span className="text-md text-[#8B8CA7]">Available: {availableAmount}</span>
+          </div>
+
+          {/* input */}
+          <SwapInput
+            startAdornment={() => (
+              <div
+                className="
+                  absolute
+                  inset-y-0
+                  left-0
+                  pl-3
+                  flex
+                  items-center
+                  pointer-events-none
+                "
+              >
+                <div className="flex items-center">
+                  <img src="/assets/images/usdc.png" alt="USDC" width="25" />
+                  <span className="text-lg text-white font-semibold ml-2">USDC LP</span>
+                </div>
+              </div>
+            )}
+            value={unstakeAmount}
+            onChange={handleUnstakeAmount}
+          />
+        </div>
+
+        <div className="mt-4 flex items-center">
+          {UNSTAKE_PERCENTAGES.map(percentageItem => (
+            <button
+              className={
+                `w-16 rounded-lg text-sm text-white py-2 transition-all mr-2 ${percentageItem === percentage ? 'bg-[#006DEE]' : 'bg-[#363636] hover:bg-[#545468]'}`
+              }
+              key={percentageItem}
+              onClick={() => handlePercentage(percentageItem)}
+            >{percentageItem}%</button>
+          ))}
+        </div>
       </div>
 
-      <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 rounded-b-md">
-        <button type="button"
-          className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-          data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button"
-          className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-          Save changes
+      <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end pt-16 pb-8 px-8 rounded-b-md">
+        <button className="rounded-xl bg-[#006DEE] hover:bg-[#0051b4] transition-all py-3 w-full text-white font-semibold">
+          Unstake
         </button>
       </div>
     </>

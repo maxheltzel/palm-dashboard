@@ -22,7 +22,7 @@ export default function StakeModal({ id }) {
       role="dialog"
     >
       <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
-        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-[#121212] bg-clip-padding rounded-md outline-none text-current">
+        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-[#121212] bg-clip-padding rounded-xl outline-none text-current">
           {/* Header */}
           <div class="relative modal-header flex flex-shrink-0 items-center justify-center px-4 py-10 rounded-t-md">
             <div className="inline-flex" role="group">
